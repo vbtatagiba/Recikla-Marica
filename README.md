@@ -20,7 +20,7 @@ Este projeto é uma API desenvolvida em Node.js usando Express para gerenciar os
 
 ## Instalação e Configuração
 1. Clone o repositório:
-- git clone https://github.com/recikla-marica/recikla-marica.git
+- git clone (https://github.com/FabioCorreiaLima/Recikla-Marica.git)
 - cd recikla-marica/my-express-api
 2. Instale as dependências:
 - npm install
