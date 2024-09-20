@@ -7,7 +7,7 @@ Este repositório contém dois projetos separados que fazem parte da iniciativa 
 - Projeto 2: Aplicativo Web de Monitoramento (Frontend)
 
 ## Projeto 1: API de Gerenciamento de Reciclagem (Backend)
-Este projeto é uma API desenvolvida em Node.js usando Express para gerenciar os dados de reciclagem, como coleta de resíduos, usuários, e pontos de entrega. Utiliza MongoDB como banco de dados.
+Este projeto é uma API desenvolvida em Node.js usando Express para gerenciar os dados de reciclagem, como coleta de resíduos, usuários, e pontos de entrega. Utiliza MySqL como banco de dados.
 
 ## Tecnologias Utilizadas
 - Node.js - Ambiente de execução JavaScript.
@@ -20,10 +20,8 @@ Este projeto é uma API desenvolvida em Node.js usando Express para gerenciar os
 
 ## Instalação e Configuração
 1. Clone o repositório:
-bash
-Copiar código
 - git clone https://github.com/recikla-marica/recikla-marica.git
-- cd recikla-marica/backend
+- cd recikla-marica/my-express-api
 2. Instale as dependências:
 - npm install
 
