@@ -4,9 +4,9 @@ const userRepository = require('../repositories/userRepository');
 const { sendResetPasswordEmail } = require('../utils/email');
 
 class AuthService {
-  async register({ username, email, password }) {
+  async register({ username, email, password, role}) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await userRepository.createUser({ username, email, password: hashedPassword });
+    const user = await userRepository.createUser({ username, email, password: hashedPassword, role });
     return user;
   }
 
