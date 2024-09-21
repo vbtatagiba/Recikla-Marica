@@ -44,12 +44,48 @@ Inicialize o banco de dados com o Sequelize CLI:
 - npx sequelize-cli db:create
 - npx sequelize-cli db:migrate
 5. Executando o projeto:
-Inicie a API:
-npm start
-A API estará disponível em http://localhost:3000.
+- Inicie a API:
+- npm start
+- A API estará disponível em http://localhost:3000.
 
 ### Endpoints da API
 - POST /auth/register - Registra um novo usuário.
 - POST /auth/login - Autentica o usuário e retorna um token JWT.
 - POST /auth/forgot-password - Gera um token para redefinição de senha e envia para o email do usuário.
 - POST /auth/reset-password - Redefine a senha do usuário utilizando o token recebido por email.
+
+## Projeto 2: Aplicativo Web de Monitoramento (Frontend)
+Este é um aplicativo web desenvolvido com next.js que permite aos usuários monitorar a coleta de materiais recicláveis. O sistema inclui visualizações de dados e mapas de pontos de coleta, entre outras.
+
+## Tecnologias Utilizadas
+- React.js - Biblioteca JavaScript para criação de interfaces de usuário.
+- Axios - Biblioteca para requisições HTTP.
+- React Router - Navegação entre páginas no React.
+- Bootstrap - Framework de CSS para estilização.
+## Instalação e Configuração
+1. Clone o repositório (se não tiver feito ainda):
+- git clone (https://github.com/FabioCorreiaLima/Recikla-Marica.git)
+- cd Recikla-Marica/recikla-marica
+2. Instale as dependências:
+- npm install
+3. Configuração do ambiente:
+- Crie um arquivo .env na raiz do projeto com as variáveis de ambiente:
+- REACT_APP_API_URL=http://localhost:3000
+- REACT_APP_MAPBOX_TOKEN=seu_token_do_mapbox
+
+4. Executando o projeto:
+## Inicie o servidor de desenvolvimento:
+npm start
+O aplicativo estará disponível em http://localhost:3001.
+
+## Funcionalidades
+- Monitoramento de Coleta: Veja os pontos de coleta e quantidades de materiais reciclados.
+- Mapa Interativo: Localize pontos de coleta próximos.
+- Login de Usuário: Faça login e veja dados personalizados.
+- 
+## Executando Ambos os Projetos
+### Se você deseja rodar os dois projetos ao mesmo tempo:
+
+- Abra dois terminais.
+- No primeiro terminal, vá até o diretório backend e execute o comando npm run dev para iniciar a API.
+- No segundo terminal, vá até o diretório frontend e execute o comando npm run dev para iniciar o aplicativo web.
