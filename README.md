@@ -1,40 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Recikla-Maricá
 
-## Getting Started
 
-First, run the development server:
+Este repositório contém dois projetos separados que fazem parte da iniciativa Recikla-Maricá. Cada um pode ser executado e gerenciado independentemente. Abaixo, você encontrará instruções para configuração, execução e dependências de cada projeto.
+## Projetos
+- Projeto 1: API de Gerenciamento de Reciclagem (Backend)
+- Projeto 2: Aplicativo Web de Monitoramento (Frontend)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Projeto 1: API de Gerenciamento de Reciclagem (Backend)
+Este projeto é uma API desenvolvida em Node.js usando Express para gerenciar os dados de reciclagem, como coleta de resíduos, usuários, e pontos de entrega. Utiliza MySqL como banco de dados.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Utilizadas
+- Node.js - Ambiente de execução JavaScript.
+- Express - Framework para construção de APIs em Node.js.
+- Sequelize - ORM para manipulação do banco de dados relacional.
+- MySQL - Banco de dados relacional.
+- JWT - Autenticação via JSON Web Tokens.
+- dotenv - Gerenciamento de variáveis de ambiente..
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Instalação e Configuração
+1. Clone o repositório:
+- git clone (https://github.com/FabioCorreiaLima/Recikla-Marica.git)
+- cd recikla-marica/my-express-api
+2. Instale as dependências:
+- npm install
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+3. Configuração do banco de dados
+Certifique-se de que o MySQL esteja instalado e rodando em sua máquina ou em um servidor remoto. Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- PORT=3000
+- DB_NAME=recikla_marica_api
+- DB_USER=root
+- DB_PASSWORD=sua_senha
+- DB_HOST=localhost
+- DB_PORT=3306
+- JWT_SECRET=seu_segredo_jwt
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+4. Configuração do Sequelize
+Inicialize o banco de dados com o Sequelize CLI:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- npx sequelize-cli db:create
+- npx sequelize-cli db:migrate
+5. Executando o projeto:
+- Inicie a API:
+- npm run dev
+- A API estará disponível em http://localhost:3000.
 
-## Deploy on Vercel
+### Endpoints da API
+- POST /auth/register - Registra um novo usuário.
+- POST /auth/login - Autentica o usuário e retorna um token JWT.
+- POST /auth/forgot-password - Gera um token para redefinição de senha e envia para o email do usuário.
+- POST /auth/reset-password - Redefine a senha do usuário utilizando o token recebido por email.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Projeto 2: Aplicativo Web de Monitoramento (Frontend)
+Este é um aplicativo web desenvolvido com next.js que permite aos usuários monitorar a coleta de materiais recicláveis. O sistema inclui visualizações de dados e mapas de pontos de coleta, entre outras.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Tecnologias Utilizadas
+- React.js - Biblioteca JavaScript para criação de interfaces de usuário.
+- Axios - Biblioteca para requisições HTTP.
+- React Router - Navegação entre páginas no React.
+- Bootstrap - Framework de CSS para estilização.
+## Instalação e Configuração
+1. Clone o repositório (se não tiver feito ainda):
+- git clone (https://github.com/FabioCorreiaLima/Recikla-Marica.git)
+- cd Recikla-Marica/recikla-marica
+2. Instale as dependências:
+- npm install
+3. Configuração do ambiente:
+- Crie um arquivo .env na raiz do projeto com as variáveis de ambiente:
+- REACT_APP_API_URL=http://localhost:3000
+- REACT_APP_MAPBOX_TOKEN=seu_token_do_mapbox
+
+4. Executando o projeto:
+## Inicie o servidor de desenvolvimento:
+- npm run dev
+- O aplicativo estará disponível em http://localhost:3000.
+
+## Funcionalidades
+- Monitoramento de Coleta: Veja os pontos de coleta e quantidades de materiais reciclados.
+- Mapa Interativo: Localize pontos de coleta próximos.
+- Login de Usuário: Faça login e veja dados personalizados.
+- 
+## Executando Ambos os Projetos
+### Se você deseja rodar os dois projetos ao mesmo tempo:
+
+- Abra dois terminais.
+- No primeiro terminal, vá até o diretório my-express-api e execute o comando npm run dev para iniciar a API, que estará disponível em http://localhost:3000.
+- Somente após a API estar em execução, vá até o segundo terminal, acesse o diretório recikla-marica e execute o comando npm run dev para iniciar o aplicativo web, que estará disponível em http://localhost:3001
