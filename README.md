@@ -45,7 +45,7 @@ Inicialize o banco de dados com o Sequelize CLI:
 - npx sequelize-cli db:migrate
 5. Executando o projeto:
 - Inicie a API:
-- npm start
+- npm run dev
 - A API estará disponível em http://localhost:3000.
 
 ### Endpoints da API
@@ -75,8 +75,8 @@ Este é um aplicativo web desenvolvido com next.js que permite aos usuários mon
 
 4. Executando o projeto:
 ## Inicie o servidor de desenvolvimento:
-npm start
-O aplicativo estará disponível em http://localhost:3001.
+- npm run dev
+- O aplicativo estará disponível em http://localhost:3000.
 
 ## Funcionalidades
 - Monitoramento de Coleta: Veja os pontos de coleta e quantidades de materiais reciclados.
@@ -87,5 +87,5 @@ O aplicativo estará disponível em http://localhost:3001.
 ### Se você deseja rodar os dois projetos ao mesmo tempo:
 
 - Abra dois terminais.
-- No primeiro terminal, vá até o diretório backend e execute o comando npm run dev para iniciar a API.
-- No segundo terminal, vá até o diretório frontend e execute o comando npm run dev para iniciar o aplicativo web.
+- No primeiro terminal, vá até o diretório my-express-api e execute o comando npm run dev para iniciar a API, que estará disponível em http://localhost:3000.
+- Somente após a API estar em execução, vá até o segundo terminal, acesse o diretório recikla-marica e execute o comando npm run dev para iniciar o aplicativo web, que estará disponível em http://localhost:3001
