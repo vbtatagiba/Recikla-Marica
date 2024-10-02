@@ -3,19 +3,21 @@ const Coleta = require('../models/Coleta');
 
 exports.createColeta = async (req, res) => {
   const { material, quantity, date, address } = req.body;
+
   try {
     const coleta = await Coleta.create({
       material,
       quantity,
       date,
       address,
-      userId: req.userId,
+      userId: req.user.id,
     });
     res.status(201).json(coleta);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
+
 
 exports.getColetas = async (req, res) => {
   const coletas = await Coleta.findAll();
