@@ -29,7 +29,7 @@ const ResetPasswordPage: React.FC = () => {
 
         try {
             // Constrói a URL corretamente com o token da query
-            const response = await axios.post(`http://localhost:3000/auth/reset-password?token=${token}`, {
+            const response = await axios.post(`http://localhost:3001/auth/reset-password?token=${token}`, {
               password
             }, {
               headers: {

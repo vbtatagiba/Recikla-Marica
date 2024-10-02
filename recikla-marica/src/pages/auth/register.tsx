@@ -9,6 +9,7 @@ const RegisterPage: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const [role, setRole] = useState<string>('usuario');
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();
 
@@ -21,12 +22,12 @@ const RegisterPage: React.FC = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/auth/register', {
+            const response = await fetch('http://localhost:3001/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, email, password }),
+                body: JSON.stringify({ username, email, password, role }), // Enviando o campo role
                 
             });
 
@@ -37,7 +38,7 @@ const RegisterPage: React.FC = () => {
             }
 
             console.log('Cadastro bem-sucedido');
-            router.push('auth/login'); // Redireciona para a página de login
+            router.push('/auth/login'); // Redireciona para a página de login
         } catch (error: any) {
             console.error('Erro ao se cadastrar:', error);
             setError(error.message || 'Erro ao cadastrar. Tente novamente.');
@@ -105,6 +106,20 @@ const RegisterPage: React.FC = () => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
+                    </div>
+                    <div className="col-12">
+                        <label htmlFor="role" className="form-label">Tipo de conta</label>
+                        <select
+                            className="form-select"
+                            id="role"
+                            name="role"
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            required
+                        >
+                            <option value="usuario">Usuário</option>
+                            <option value="coletor">Coletor</option>
+                        </select>
                     </div>
                     {error && (
                         <div className="col-12">

@@ -1,6 +1,5 @@
 # Recikla-Maricá
 
-
 Este repositório contém dois projetos separados que fazem parte da iniciativa Recikla-Maricá. Cada um pode ser executado e gerenciado independentemente. Abaixo, você encontrará instruções para configuração, execução e dependências de cada projeto.
 ## Projetos
 - Projeto 1: API de Gerenciamento de Reciclagem (Backend)
@@ -25,28 +24,37 @@ Este projeto é uma API desenvolvida em Node.js usando Express para gerenciar os
 2. Instale as dependências:
 - npm install
 
-3. Configuração do banco de dados
-Certifique-se de que o MySQL esteja instalado e rodando em sua máquina ou em um servidor remoto. Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
+3. Criando banco de dados (Postgres)
 
-- PORT=3000
+- Conentando no Postgres: ```psql -U postgres -h localhost```
+- Criando banco de dados: ```create database recikla_marica_api;```
+
+3.1. Configuração do banco de dados (mysql ou postgres)
+Certifique-se de que o MySQL ou o Postgres esteja instalado e rodando em sua máquina ou em um servidor remoto. Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
+
+# MySQL configuration
 - DB_NAME=recikla_marica_api
 - DB_USER=root
 - DB_PASSWORD=sua_senha
 - DB_HOST=localhost
 - DB_PORT=3306
-- JWT_SECRET=seu_segredo_jwt
 
+# PostgreSQL configuration
+- PGDATABASE=recikla_marica_api
+- PGUSER=postgres
+- PGPASSWORD=your_password
+- PGHOST=localhost
+- PGPORT=5432
 
 4. Configuração do Sequelize
 Inicialize o banco de dados com o Sequelize CLI:
-
 
 - npx sequelize-cli db:create
 - npx sequelize-cli db:migrate
 5. Executando o projeto:
 - Inicie a API:
 - npm run dev
-- A API estará disponível em http://localhost:3000.
+- A API estará disponível em http://localhost:3001
 
 ### Endpoints da API
 - POST /auth/register - Registra um novo usuário.
@@ -76,7 +84,7 @@ Este é um aplicativo web desenvolvido com next.js que permite aos usuários mon
 4. Executando o projeto:
 ## Inicie o servidor de desenvolvimento:
 - npm run dev
-- O aplicativo estará disponível em http://localhost:3000.
+- O aplicativo estará disponível em http://localhost:3000
 
 ## Funcionalidades
 - Monitoramento de Coleta: Veja os pontos de coleta e quantidades de materiais reciclados.
@@ -87,5 +95,5 @@ Este é um aplicativo web desenvolvido com next.js que permite aos usuários mon
 ### Se você deseja rodar os dois projetos ao mesmo tempo:
 
 - Abra dois terminais.
-- No primeiro terminal, vá até o diretório my-express-api e execute o comando npm run dev para iniciar a API, que estará disponível em http://localhost:3000.
-- Somente após a API estar em execução, vá até o segundo terminal, acesse o diretório recikla-marica e execute o comando npm run dev para iniciar o aplicativo web, que estará disponível em http://localhost:3001
+- No primeiro terminal, vá até o diretório my-express-api e execute o comando npm run dev para iniciar a API, que estará disponível em http://localhost:3001
+- Somente após a API estar em execução, vá até o segundo terminal, acesse o diretório recikla-marica e execute o comando npm run dev para iniciar o aplicativo web, que estará disponível em http://localhost:3000

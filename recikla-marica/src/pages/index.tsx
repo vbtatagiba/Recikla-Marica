@@ -18,10 +18,10 @@ const Home: React.FC = () => {
             <p className="lead">O futuro da reciclagem começa aqui!</p>
             <div className="col-6">
                 <div className="d-grid gap-2">
-                    <Link href="auth/login" className="btn btn-success">
+                    <Link href="/auth/login" className="btn btn-success">
                             Login
                     </Link>
-                    <Link href="auth/register" className="btn btn-primary">
+                    <Link href="/auth/register" className="btn btn-primary">
                         Cadastre-se
                     </Link>
                 </div>

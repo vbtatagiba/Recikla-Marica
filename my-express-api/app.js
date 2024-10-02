@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors'); // Importando CORS
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
-const coletasRoutes = require('./routes/coletaRoutes')
+const coletasRoutes = require('./routes/coletaRoutes');
 const app = express();
 
 // Middleware para CORS (permitir requests de diferentes origens)
@@ -13,12 +13,16 @@ app.use(express.json());
 
 // Roteamento
 app.use('/auth', authRoutes);
-app.use('/api', coletasRoutes)
+app.use('/api', coletasRoutes);
+
+// Definir a porta a partir da variável de ambiente ou usar 3001 como padrão
+const PORT_SERVER = process.env.PORT_SERVER || 3001;
+
 // Sincronizar banco de dados e iniciar o servidor
 sequelize.sync()
   .then(() => {
-    app.listen(3000, () => {
-      console.log('Server running on port 3000');
+    app.listen(PORT_SERVER, () => {
+      console.log(`Server running on port ${PORT_SERVER}`);
     });
   })
   .catch((err) => {
