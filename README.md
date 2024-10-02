@@ -80,6 +80,7 @@ Este é um aplicativo web desenvolvido com next.js que permite aos usuários mon
 - Crie um arquivo .env na raiz do projeto com as variáveis de ambiente:
 - REACT_APP_API_URL=http://localhost:3000
 - REACT_APP_MAPBOX_TOKEN=seu_token_do_mapbox
+- NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=sua_api_key
 
 4. Executando o projeto:
 ## Inicie o servidor de desenvolvimento:
@@ -88,7 +89,7 @@ Este é um aplicativo web desenvolvido com next.js que permite aos usuários mon
 
 ## Funcionalidades
 - Monitoramento de Coleta: Veja os pontos de coleta e quantidades de materiais reciclados.
-- Mapa Interativo: Localize pontos de coleta próximos.
+- Mapa com Localização do Usuário e Rastreamento em Tempo Real
 - Login de Usuário: Faça login e veja dados personalizados.
 - 
 ## Executando Ambos os Projetos
