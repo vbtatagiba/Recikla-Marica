@@ -90,7 +90,7 @@ Este é um aplicativo web desenvolvido com next.js que permite aos usuários mon
 - Monitoramento de Coleta: Veja os pontos de coleta e quantidades de materiais reciclados.
 - Mapa Interativo: Localize pontos de coleta próximos.
 - Login de Usuário: Faça login e veja dados personalizados.
-- 
+- Mapa com Localização do Usuário e Rastreamento em Tempo Real.
 ## Executando Ambos os Projetos
 ### Se você deseja rodar os dois projetos ao mesmo tempo:
 
