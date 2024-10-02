@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors'); // Importando CORS
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
-
+const coletasRoutes = require('./routes/coletaRoutes')
 const app = express();
 
 // Middleware para CORS (permitir requests de diferentes origens)
@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Roteamento
 app.use('/auth', authRoutes);
-
+app.use('/api', coletasRoutes)
 // Sincronizar banco de dados e iniciar o servidor
 sequelize.sync()
   .then(() => {

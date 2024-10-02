@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/config');
+const sequelize = require('../config/database');
 const User = require('./User');
 
 // Definição do modelo Coleta
-const Coletas = sequelize.define('Coletas', {
+const Coleta = sequelize.define('Coleta', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -41,6 +41,6 @@ const Coletas = sequelize.define('Coletas', {
 });
 
 // Associação: Coleta pertence a um User
-Coletas.belongsTo(User, { as: 'user', foreignKey: 'userId' });
+Coleta.belongsTo(User, { as: 'user', foreignKey: 'userId' });
 
 module.exports = Coleta;
