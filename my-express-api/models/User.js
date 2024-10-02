@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const bcrypt = require('bcrypt'); // Certifique-se de importar o bcrypt
 
 // Definição do modelo User
 const User = sequelize.define('User', {
@@ -27,25 +26,14 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
   role: {
-    type: DataTypes.ENUM('usuario', 'coletor'), // ou DataTypes.STRING se preferir
-    allowNull: false, // deve ser obrigatória
+    type: DataTypes.ENUM('usuario', 'coletor'), // Define os papéis possíveis
+    allowNull: false, // Deve ser obrigatória
   },
   isAdm: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
     allowNull: false,
   },
-}, {
-  hooks: {
-    beforeCreate: async (user) => {
-      user.password = await bcrypt.hash(user.password, 10);
-    },
-  },
 });
-
-// Método para validar a senha
-User.prototype.validatePassword = async function (password) {
-  return bcrypt.compare(password, this.password);
-};
 
 module.exports = User;
