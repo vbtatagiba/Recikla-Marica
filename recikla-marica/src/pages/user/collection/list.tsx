@@ -64,20 +64,37 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 const CollectionListPage = () => {
   const [collections, setCollections] = useState<Collection[]>([]);
+  const [selectedCollections, setSelectedCollections] = useState<Collection[]>([]);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
+  const handleSelectionChange = (collection: Collection, isSelected: boolean) => {
+    setSelectedCollections(prevSelectedCollections => {
+      if (isSelected) {
+        return [...prevSelectedCollections, collection];
+      } else {
+        return prevSelectedCollections.filter(c => c.id !== collection.id);
+      }
+    });
+  };
+  
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchCollections = async () => {
+      setLoading(true);
       try {
         const data = await getCollections();
         setCollections(data);
       } catch (err: any) {
         console.error('Erro ao buscar coletas:', err.message);
         setError('Erro ao carregar coletas.');
+      } finally {
+        setLoading(false);
       }
     };
-
+  
     fetchCollections();
   }, []);
 
@@ -91,6 +108,22 @@ const CollectionListPage = () => {
 
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   };
+
+  const handleNavigateToMap = () => {
+    if (selectedCollections.length > 0) {
+      const locations = selectedCollections.map(collection => collection.location).join(';');
+      // Validar se locations contém coordenadas válidas antes de redirecionar
+      if (locations) {
+        router.push({
+          pathname: '/map',
+          query: { locations },
+        });
+      }
+    } else {
+      alert('Selecione ao menos uma coleta para visualizar as rotas.');
+    }
+  };
+  
 
   return (
     <div>
@@ -109,23 +142,37 @@ const CollectionListPage = () => {
               <th>Data</th>
               <th>Local</th>
               <th>Localização</th>
+              <th>Selecionar</th>
             </tr>
           </thead>
           <tbody>
-            {collections.map((collection, index) => (
-              <tr key={collection.id}>
-                <td>{index + 1}</td>
-                <td>{collection.material}</td>
-                <td>{collection.quantity}</td>
-                <td>{formatDate(collection.date)}</td>
-                <td>{`${collection.rua}, ${collection.numero}, ${collection.cidade}`}</td>
-                <td>{`${collection.location }`}</td>
-              </tr>
-            ))}
+          {collections.map((collection, index) => (
+            <tr key={collection.id || index}>
+              <td>{index + 1}</td>
+              <td>{collection.material}</td>
+              <td>{collection.quantity}</td>
+              <td>{formatDate(collection.date)}</td>
+              <td>{`${collection.rua}, ${collection.numero}, ${collection.cidade}`}</td>
+              <td>{collection.location}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  onChange={(e) => handleSelectionChange(collection, e.target.checked)}
+                />
+              </td>
+            </tr>
+          ))}
           </tbody>
         </table>
 
         <div className="text-center mt-4">
+          <button
+            className="btn btn-primary"
+            onClick={handleNavigateToMap}
+            disabled={selectedCollections.length === 0}
+          >
+            Ver Rotas
+          </button>
           <button
             className="btn btn-secondary"
             onClick={() => router.push('/user/dashboard')}

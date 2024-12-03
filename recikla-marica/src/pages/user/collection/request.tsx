@@ -76,7 +76,7 @@ const RequestCollectionPage = () => {
  // Para armazenar as coordenadas em formato de string
  const [coordinates, setCoordinates] = useState('');
 
-
+  
   const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
   const materials = [
@@ -91,17 +91,24 @@ const RequestCollectionPage = () => {
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '', // Substituir pela chave da API
+    libraries: ['places'],
   });
 
-  const handleMapClick = async (event: google.maps.MapMouseEvent) => {
+  const handleMapEvent = async (event: google.maps.MapMouseEvent) => {
     const latLng = event.latLng;
     if (latLng) {
       const lat = latLng.lat();
       const lng = latLng.lng();
       setLocation({ lat, lng });
       setCoordinates(`Latitude: ${lat}, Longitude: ${lng}`); // Atualiza o campo com as coordenadas
+  
+      const marker = new google.maps.Marker({
+        position: { lat, lng },
+        map: event.map, // Usando a instância do mapa do evento
+        title: 'Local de Coleta',
+      });
     }
-  };
+  };;
   
   // Busca dados do CEP
   const fetchCepData = async (value: string) => {
@@ -365,7 +372,7 @@ const RequestCollectionPage = () => {
                     mapContainerStyle={containerStyle}
                     center={location}
                     zoom={13}
-                    onClick={handleMapClick}
+                    onClick={handleMapEvent}
                   >
                     <Marker position={location} />
                   </GoogleMap>
