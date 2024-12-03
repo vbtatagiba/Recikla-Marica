@@ -1,10 +1,40 @@
-// pages/auth/forgot-password.tsx
+import { GetServerSideProps } from 'next';
+import { parseCookies } from 'nookies';
 import React, { useState, FormEvent } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importa o Bootstrap
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Logo from '@components/Logo';
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const cookies = parseCookies(ctx);
+    const token = cookies.token;
+
+    if (token) {
+        try {
+            const response = await fetch('http://localhost:3001/auth/profile', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (response.ok) {
+                return {
+                    redirect: {
+                        destination: '/user/dashboard',
+                        permanent: false,
+                    },
+                };
+            }
+        } catch (error) {
+            console.error('Token inválido ou expirado:', error);
+        }
+    }
+
+    return {
+        props: {}, // Permite o acesso à página de login
+    };
+};
 
 const ForgotPasswordPage: React.FC = () => {
     const [email, setEmail] = useState<string>('');
@@ -22,24 +52,17 @@ const ForgotPasswordPage: React.FC = () => {
                 'Content-Type': 'application/json'
               }
             });
-            setMessage('Password reset link sent to your email.');
+            setMessage('Link para redefinição de senha enviado para o seu e-mail.');
           } catch (err) {
 
-            setError('Error sending reset link.');
+            setError('Erro ao enviar o link de redefinição.');
           }
     };
 
     return (
         <div className="container d-flex align-items-center justify-content-center min-vh-100">
             <div className="col-md-6">
-                <div className="text-center mb-4 d-flex justify-content-center">
-                    <Image
-                        src="/logo_recikla_marica.png"
-                        alt="Logo ReciKla Maricá"
-                        width={300}
-                        height={300}
-                    />
-                </div>
+                <Logo />
                 <h2 className="text-center mb-4">Recuperar Senha</h2>
                 <form onSubmit={handleSubmit} className="row g-3">
                     <div className="col-12">

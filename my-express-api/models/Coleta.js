@@ -30,6 +30,10 @@ const Coleta = sequelize.define('Coleta', {
     type: DataTypes.STRING,
     defaultValue: 'aguardando',
   },
+  location: {
+    type: DataTypes.JSON,
+    allowNull: true,
+  },
   userId: { // Coluna para a referência ao User
     type: DataTypes.INTEGER,
     allowNull: false,

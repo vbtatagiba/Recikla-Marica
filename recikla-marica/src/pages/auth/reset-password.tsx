@@ -1,8 +1,8 @@
 // pages/auth/reset-password.tsx
 import React, { useState, FormEvent } from 'react';
 import { useRouter } from 'next/router';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importa o Bootstrap
 import axios from 'axios';
+import Logo from '@components/Logo';
 
 const ResetPasswordPage: React.FC = () => {
     const router = useRouter();
@@ -47,6 +47,7 @@ const ResetPasswordPage: React.FC = () => {
     return (
         <div className="container d-flex align-items-center justify-content-center min-vh-100">
             <div className="col-md-6">
+                <Logo />
                 <h2 className="text-center mb-4">Redefinir Senha</h2>
                 <form onSubmit={handleSubmit} className="row g-3">
                     <div className="col-12">

@@ -1,5 +1,33 @@
 # Recikla-Maricá
 
+### my-express-api/.env
+```bash
+#############################
+#       DEFAULT MYSQL       #
+# OPTS: mysql || postgres #
+#############################
+
+DB_DIALECT=mysql  # Ou 'mysql' para usar o MySQL
+
+# MySQL configuration
+MYSQLDATABASE=recikla_marica_api
+MYSQLUSER=root
+MYSQLPASSWORD=bernardo2004
+MYSQLHOST=localhost
+MYSQLPORT=3306
+
+# PostgreSQL configuration
+PGDATABASE=recikla_marica_api
+PGUSER=postgres
+PGPASSWORD=123
+PGHOST=localhost
+PGPORT=5432
+```
+### recikla-marica/.env
+```bash
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyAzs138hG8hG_M3IERkLiy7HluWY8sGOVs
+```
+
 Este repositório contém dois projetos separados que fazem parte da iniciativa Recikla-Maricá. Cada um pode ser executado e gerenciado independentemente. Abaixo, você encontrará instruções para configuração, execução e dependências de cada projeto.
 ## Projetos
 - Projeto 1: API de Gerenciamento de Reciclagem (Backend)
@@ -47,14 +75,28 @@ Certifique-se de que o MySQL ou o Postgres esteja instalado e rodando em sua má
 - PGPORT=5432
 
 4. Configuração do Sequelize
-Inicialize o banco de dados com o Sequelize CLI:
 
-- npx sequelize-cli db:create
-- npx sequelize-cli db:migrate
+Instalando Sequelize CLI nas dependências do projeto:
+- ```npm install --save-dev sequelize-cli```
+
+Migration para o model User (se já existir o arquivo na pasta migrations, ignorar esse comando):
+- ```npx sequelize-cli migration:generate --name create-users-table```
+
+Migration para o model Coleta (se já existir o arquivo na pasta migrations, ignorar esse comando):
+- ```npx sequelize-cli migration:generate --name create-coletas-table```
+
+Executando a migração para criar as tabelas:
+- ```npx sequelize-cli db:migrate```
+
 5. Executando o projeto:
 - Inicie a API:
 - npm run dev
 - A API estará disponível em http://localhost:3001
+
+6. Para criar um JWT SECRET, faça:
+- Entre no terminal do node. Digite ```node``` no terminal.
+- Rode o comando no terminal do node: ```require('crypto').randomBytes(64).toString('hex');```
+- Copie o código que foi criado e use como JWT SECRET.
 
 ### Endpoints da API
 - POST /auth/register - Registra um novo usuário.

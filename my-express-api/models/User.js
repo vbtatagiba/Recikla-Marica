@@ -18,7 +18,7 @@ const User = sequelize.define('User', {
     allowNull: false,
     unique: true,
     validate: {
-      isEmail: true,  // Validação para garantir que o email seja válido
+      isEmail: true, // Validação para garantir que o email seja válido
     },
   },
   password: {
@@ -28,6 +28,41 @@ const User = sequelize.define('User', {
   role: {
     type: DataTypes.ENUM('usuario', 'coletor'), // Define os papéis possíveis
     allowNull: false, // Deve ser obrigatória
+  },
+  estado: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  cidade: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  rua: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  cep: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  bairro: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  numero: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  complemento: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  /////////////
+  // DEFAULT //
+  /////////////
+  profileImage: {
+    type: DataTypes.STRING, // Caminho para o arquivo de imagem
+    allowNull: true,
   },
   isAdm: {
     type: DataTypes.BOOLEAN,
